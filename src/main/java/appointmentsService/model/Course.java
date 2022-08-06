@@ -1,12 +1,12 @@
-package appointmentsService.model;
+package com.appointmentsService.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -34,18 +34,18 @@ public class Course {
 
     //---------------------------------------------------------
 
-    void setTitle(String _Title){
+    public void setTitle(String _Title){
         if (_Title!= null){ this.Title = _Title; }
     }
-    void setForSemester(int _forSemester){
+    public void setForSemester(int _forSemester){
         this.forSemester = _forSemester;
     }
 
     //---------------------------------------------------------
 
-    int getID(){ return this.ID; }
-    String getTitle(){ return this.Title; }
-    int getForWhatSemester(){ return this.forSemester; }
+    public int getID(){ return this.ID; }
+    public String getTitle(){ return this.Title; }
+    public int getForWhatSemester(){ return this.forSemester; }
 
     //----------------------------------------------------------
 

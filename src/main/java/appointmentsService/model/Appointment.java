@@ -1,12 +1,18 @@
-package appointmentsService.model;
+package com.appointmentsService.model;
 
-import javax.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicInteger;
 
-//@Entity
-//@Table(name="APPOINTMENTS")
+@Entity
+@Table(name="APPOINTMENTS")
 public class Appointment {
     private static final AtomicInteger count = new AtomicInteger(0);
 
@@ -26,13 +32,13 @@ public class Appointment {
     @Column(name="ENDDATETIME")
     private LocalDateTime endDateTime;
     @Column(name="COURSE_ID")
-    private Course Course;
+    private int CourseID;
     @Column(name="FACULTY_ID")
-    private Faculty Faculty;
+    private int FacultyID;
     @Column(name="LOCATION_ID")
-    private Location Location;
+    private int LocationID;
     @Column(name="PERSON_ID")
-    private Person Person;
+    private int PersonID;
 
     public Appointment(){}
 
@@ -47,24 +53,31 @@ public class Appointment {
 
     //---------------------------------------------------------
 
-    void setTitle(String _Title){
+    public void setTitle(String _Title){
         if (_Title != null){ this.Title = _Title; }
     }
-    void setNewStart(LocalDateTime _startDateTime){
+    public void setNewStart(LocalDateTime _startDateTime){
         this.startDateTime = _startDateTime;
     }
-    void setNewEnd(LocalDateTime _endDateTime){
+    public void setNewEnd(LocalDateTime _endDateTime){
         this.endDateTime = _endDateTime;
     }
+    public void setPublicMode(boolean _Mode){ this.isPublic = _Mode; }
+    public void setSemester(int _Semester){ this.Semester = _Semester; }
+
+    public void setCourseID(int _CourseID) { this.CourseID = _CourseID; }
+    public void setFacultyID(int _FacultyID) { this.FacultyID = _FacultyID; }
+    public void setLocationID(int _LocID) { this.LocationID = _LocID; }
+    public void setPersonID(int _PersonID) { this.PersonID = _PersonID; }
 
     //---------------------------------------------------------
 
-    int getID(){ return this.ID; }
-    String getTitle(){ return this.Title; }
-    boolean getIfPublic(){ return this.isPublic; }
-    int getSemester(){ return this.Semester; }
-    LocalDateTime getStartDateTime(){ return this.startDateTime; }
-    LocalDateTime getEndDateTime(){ return this.endDateTime; }
+    public int getID(){ return this.ID; }
+    public  String getTitle(){ return this.Title; }
+    public boolean getIfPublic(){ return this.isPublic; }
+    public int getSemester(){ return this.Semester; }
+    public LocalDateTime getStartDateTime(){ return this.startDateTime; }
+    public LocalDateTime getEndDateTime(){ return this.endDateTime; }
 
     //---------------------------------------------------------
 
