@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Optional;
 
 public class s_Appointment extends sessionParentClass {
+    /** function to create a new appointment
+     */
     void createAppointment(String _Title,
                            boolean _isPublic,
                            int _Semester,
@@ -146,7 +148,7 @@ public class s_Appointment extends sessionParentClass {
      * @param personId show appointments from one organizer
      * @return list of type <Appointment> containing matching appointments
      */
-    public List<Appointment> searchAppointments(String searchTerm, Integer semester, Timestamp fromDate, Timestamp toDate, BigInteger courseID,
+    public List<Appointment> searchAppointments(String searchTerm, Integer semester, LocalDateTime fromDate, LocalDateTime toDate, BigInteger courseID,
                                                 BigInteger facultyID, BigInteger locationID, BigInteger personId) {
         getSessionFactory();
         try (Session session = sessionFactory.openSession()) {
@@ -160,22 +162,22 @@ public class s_Appointment extends sessionParentClass {
                 predicates.add(cb.like(root.get("Title"), "%" + searchTerm + "%"));
             }
             if (fromDate != null  && toDate != null) {
-                predicates.add(cb.or(cb.lessThan(root.get("Start"), toDate), cb.greaterThan(root.get("End"), fromDate )));
+                predicates.add(cb.and(cb.lessThan(root.get("startDateTime"), toDate), cb.greaterThan(root.get("endDateTime"), fromDate )));
             }
             if (semester != null) {
                 predicates.add(cb.equal(root.get("Semester"), semester));
             }
             if (courseID != null) {
-                predicates.add(cb.equal(root.get("COURSE_ID"), courseID));
+                predicates.add(cb.equal(root.get("CourseID"), courseID));
             }
             if (facultyID != null) {
-                predicates.add(cb.equal(root.get("FACULTY_ID"), facultyID));
+                predicates.add(cb.equal(root.get("FacultyID"), facultyID));
             }
             if (locationID != null) {
-                predicates.add(cb.equal(root.get("LOCATION_ID"), locationID));
+                predicates.add(cb.equal(root.get("LocationID"), locationID));
             }
             if (personId != null) {
-                predicates.add(cb.equal(root.get("PERSON_ID"), personId));
+                predicates.add(cb.equal(root.get("PersonID"), personId));
             }
             Predicate[] array = predicates.toArray(new Predicate[0]);
             cr.select(root).where(array);
