@@ -1,8 +1,8 @@
-package com.appointmentsService.sessionControls;
+package appointmentsService.sessionControls;
 
-import com.appointmentsService.model.Appointment;
-import com.appointmentsService.model.Course;
-import com.appointmentsService.model.Person;
+import appointmentsService.model.Appointment;
+import appointmentsService.model.Course;
+import appointmentsService.model.Person;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;

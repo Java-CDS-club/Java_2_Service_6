@@ -1,4 +1,4 @@
-package com.appointmentsService.model;
+package appointmentsService.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
