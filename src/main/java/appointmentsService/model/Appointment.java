@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity
-@Table(name="APPOINTMENTs")
+@Table(name="APPOINTMENTS")
 public class Appointment {
     private static final AtomicInteger count = new AtomicInteger(0);
 
