@@ -1,7 +1,6 @@
 package appointmentsService.sessionControls;
 
 import appointmentsService.model.Appointment;
-import appointmentsService.sessionControls.sessionParentClass;
 import javax.persistence.Query;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -123,6 +122,16 @@ public class s_Appointment extends sessionParentClass {
             }
         }
     }
+
+    /**
+     * List all appointments in the database
+     *
+     * @return list of type <Appointment> containing all appointments
+     */
+    public List<Appointment> listAllAppointments() {
+        return searchAppointments(null, null, null, null, null, null, null, null);
+    }
+
     /** Search for a public appointments by certain criteria
      * @param searchTerm search term included in the title of the appointment
      * @param fromDate define the start of time interval, can only be used in conjunction with "toDate" (see below)
@@ -137,32 +146,32 @@ public class s_Appointment extends sessionParentClass {
                                                 BigInteger facultyID, BigInteger locationID, BigInteger personId) {
         getSessionFactory();
         try (Session session = sessionFactory.openSession()) {
-            CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
-            CriteriaQuery<Appointment> cr = criteriaBuilder.createQuery(Appointment.class);
+            CriteriaBuilder cb = session.getCriteriaBuilder();
+            CriteriaQuery<Appointment> cr = cb.createQuery(Appointment.class);
             Root<Appointment> root = cr.from(Appointment.class);
             ArrayList<Predicate> predicates = new ArrayList<Predicate>();
 
-            predicates.add(criteriaBuilder.isTrue(root.get("ISPUBLIC")));
+            predicates.add(cb.isTrue(root.get("isPublic")));
             if (searchTerm != null) {
-                predicates.add(criteriaBuilder.like(root.get("TITLE"), "%" + searchTerm + "%"));
+                predicates.add(cb.like(root.get("Title"), "%" + searchTerm + "%"));
             }
             if (fromDate != null  && toDate != null) {
-                predicates.add(criteriaBuilder.or(criteriaBuilder.lessThan(root.get("STARTDATETIME"), toDate), criteriaBuilder.greaterThan(root.get("ENDDATETIME"), fromDate )));
+                predicates.add(cb.or(cb.lessThan(root.get("Start"), toDate), cb.greaterThan(root.get("End"), fromDate )));
             }
             if (semester != null) {
-                predicates.add(criteriaBuilder.equal(root.get("SEMESTER"), semester));
+                predicates.add(cb.equal(root.get("Semester"), semester));
             }
             if (courseID != null) {
-                predicates.add(criteriaBuilder.equal(root.get("COURSE_ID"), courseID));
+                predicates.add(cb.equal(root.get("COURSE_ID"), courseID));
             }
             if (facultyID != null) {
-                predicates.add(criteriaBuilder.equal(root.get("FACULTY_ID"), facultyID));
+                predicates.add(cb.equal(root.get("FACULTY_ID"), facultyID));
             }
             if (locationID != null) {
-                predicates.add(criteriaBuilder.equal(root.get("LOCATION_ID"), locationID));
+                predicates.add(cb.equal(root.get("LOCATION_ID"), locationID));
             }
             if (personId != null) {
-                predicates.add(criteriaBuilder.equal(root.get("PERSON_ID"), personId));
+                predicates.add(cb.equal(root.get("PERSON_ID"), personId));
             }
             Predicate[] array = predicates.toArray(new Predicate[0]);
             cr.select(root).where(array);

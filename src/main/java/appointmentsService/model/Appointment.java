@@ -77,10 +77,10 @@ public class Appointment {
     public String toString(){
         return "Appointment{" +
                 "ID = " + ID +
-                "Title = " + Title +
-                "isPublic = " + isPublic +
-                "Semester = " + Semester +
-                "Start = " + startDateTime +
-                "End = " + endDateTime + "}";
+                ", Title = " + Title +
+                ", isPublic = " + isPublic +
+                ", Semester = " + Semester +
+                ", Start = " + startDateTime +
+                ", End = " + endDateTime + "}";
     }
 }
