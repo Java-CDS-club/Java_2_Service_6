@@ -1,18 +1,17 @@
-package appointmentsService.model;
+package com.appointmentsService.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 import java.util.concurrent.atomic.AtomicInteger;
 
 @Entity
-@Table(name = "LOCATION")
+@Table(name="LOCATION")
 public class Location {
     private static final AtomicInteger count = new AtomicInteger(0);
 
@@ -35,18 +34,18 @@ public class Location {
 
     //---------------------------------------------------------
 
-    void setRoom(String _Room){
+    public void setRoom(String _Room){
         if (_Room != null){ this.Room = _Room; }
     }
-    void setBuilding(String _Building){
+    public void setBuilding(String _Building){
         if (_Building != null){ this.Building = _Building; }
     }
 
     //---------------------------------------------------------
 
-    int getID(){ return this.ID; }
-    String getBuilding(){ return this.Building; }
-    String getRoom(){ return this.Room; }
+    public int getID(){ return this.ID; }
+    public String getBuilding(){ return this.Building; }
+    public String getRoom(){ return this.Room; }
 
     //---------------------------------------------------------
 

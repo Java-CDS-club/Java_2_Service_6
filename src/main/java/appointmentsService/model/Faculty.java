@@ -1,16 +1,14 @@
-package appointmentsService.model;
+package com.appointmentsService.model;
 
-
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
+import jakarta.persistence.Table;
 
 import java.util.concurrent.atomic.AtomicInteger;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
 
 @Entity
 @Table(name="FACULTY")
@@ -33,14 +31,14 @@ public class Faculty {
 
     //---------------------------------------------------------
 
-    void setTitle(String _Title){
+    public void setTitle(String _Title){
         this.Title = _Title;
     }
 
     //---------------------------------------------------------
 
-    String getName(){  return this.Title; }
-    int getID(){ return this.ID; }
+    public String getName(){  return this.Title; }
+    public int getID(){ return this.ID; }
 
     //---------------------------------------------------------
 
