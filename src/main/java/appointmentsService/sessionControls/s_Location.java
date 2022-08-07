@@ -2,7 +2,7 @@ package appointmentsService.sessionControls;
 
 import appointmentsService.model.Faculty;
 import appointmentsService.model.Location;
-import jakarta.persistence.Query;
+import javax.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

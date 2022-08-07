@@ -3,9 +3,9 @@ package appointmentsService.sessionControls;
 import appointmentsService.model.Appointment;
 import appointmentsService.model.Course;
 import appointmentsService.model.Person;
-import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
+import org.hibernate.query.Query;
 
 import java.time.LocalDateTime;
 import java.util.List;
