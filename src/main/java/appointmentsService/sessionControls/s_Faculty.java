@@ -1,5 +1,4 @@
 package appointmentsService.sessionControls;
-
 import appointmentsService.model.Course;
 import appointmentsService.model.Faculty;
 import javax.persistence.Query;
@@ -10,7 +9,7 @@ import org.hibernate.Transaction;
 import java.util.List;
 import java.util.Optional;
 
-public class s_Faculty extends sessionParentClass{
+public class s_Faculty extends sessionParentClass {
     void createFaculty(String _Title) {
 
         getSessionFactory();

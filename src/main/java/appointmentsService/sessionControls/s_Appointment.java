@@ -59,16 +59,28 @@ public class s_Appointment extends sessionParentClass {
 
     //---------------------------------------------------------------------
 
+    /** change attributes of one appointment
+     * @param _ID the id of the appointment to change (required argument)
+     * @param _Title the new title (null if shoudn't change)
+     * @param _isPublic the new privacy setting (null if shoudn't change)
+     * @param _Semester the new semester (null if shoudn't change)
+     * @param _startTimeDate the new start date and time (null if shoudn't change)
+     * @param _endTimeDate the new end date and time (null if shoudn't change)
+     * @param _CourseID the new course id (null if shoudn't change)
+     * @param _FacultyID the new fuculty id (null if shoudn't change)
+     * @param _LocID the new location id (null if shoudn't change)
+     * @param _OrganizerID the new organizer id (null if shoudn't change)
+     */
     void changeAppointment(int _ID,
                            String _Title,
-                           boolean _isPublic,
-                           int _Semester,
+                           Boolean _isPublic,
+                           Integer _Semester,
                            LocalDateTime _startTimeDate,
                            LocalDateTime _endTimeDate,
-                           int _CourseID,
-                           int _FacultyID,
-                           int _LocID,
-                           int _OrganizerID) {
+                           Integer _CourseID,
+                           Integer _FacultyID,
+                           Integer _LocID,
+                           Integer _OrganizerID) {
 
         getSessionFactory();
         try (Session session = sessionFactory.openSession()) {
@@ -77,28 +89,20 @@ public class s_Appointment extends sessionParentClass {
             try {
                 tx = session.beginTransaction();
 
-                String hql = "FROM Appointments a WHERE a.ID = :_ID";
-                Query query = session.createQuery(hql, Appointment.class);
-                if (_Title != null) query.setParameter("title", _Title);
-                query.setParameter("ispublic", _isPublic);
-                query.setParameter("semester", _Semester);
-                query.setParameter("startdatetime", _startTimeDate);
-                query.setParameter("enddatetime", _endTimeDate);
-                query.setParameter("course_id", _CourseID);
-                query.setParameter("faculty_id", _FacultyID);
-                query.setParameter("location_id", _LocID);
-                query.setParameter("organizer_id", _OrganizerID);
+                String hql = "FROM Appointment a WHERE a.ID = :_ID";
+                Query query = session.createQuery(hql, Appointment.class).setParameter("_ID", _ID);
+
 
                 Optional<Appointment> first = query.getResultList().stream().findFirst();
                 Appointment appointment = first.get();
-                appointment.setTitle(_Title);
-                appointment.setSemester(_Semester);
-                appointment.setNewStart(_startTimeDate);
-                appointment.setNewEnd(_endTimeDate);
-                appointment.setCourseID(_CourseID);
-                appointment.setFacultyID(_FacultyID);
-                appointment.setLocationID(_LocID);
-                appointment.setPersonID(_OrganizerID);
+                if (_Title != null) appointment.setTitle(_Title);
+                if (_Semester != null) appointment.setSemester(_Semester);
+                if (_startTimeDate != null) appointment.setNewStart(_startTimeDate);
+                if (_endTimeDate != null) appointment.setNewEnd(_endTimeDate);
+                if (_CourseID != null) appointment.setCourseID(_CourseID);
+                if (_FacultyID != null) appointment.setFacultyID(_FacultyID);
+                if (_LocID != null) appointment.setLocationID(_LocID);
+                if (_OrganizerID != null) appointment.setPersonID(_OrganizerID);
                 session.persist(appointment);
 
                 tx.commit();
@@ -124,7 +128,7 @@ public class s_Appointment extends sessionParentClass {
     }
 
     /**
-     * List all appointments in the database
+     * List all public appointments in the database
      *
      * @return list of type <Appointment> containing all appointments
      */
