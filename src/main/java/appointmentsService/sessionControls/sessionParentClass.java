@@ -1,4 +1,4 @@
-package com.appointmentsService.sessionControls;
+package appointmentsService.sessionControls;
 
 import jakarta.persistence.Query;
 import org.hibernate.Session;

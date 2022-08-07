@@ -1,4 +1,4 @@
-package com.appointmentsService;
+package appointmentsService;
 
 import java.util.List;
 import java.util.Optional;
