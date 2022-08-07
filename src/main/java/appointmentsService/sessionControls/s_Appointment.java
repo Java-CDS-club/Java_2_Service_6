@@ -1,6 +1,7 @@
-package com.appointmentsService.sessionControls;
+package appointmentsService.sessionControls;
 
 import com.appointmentsService.model.Appointment;
+import com.appointmentsService.sessionControls.sessionParentClass;
 import jakarta.persistence.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
