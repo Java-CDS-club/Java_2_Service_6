@@ -77,7 +77,7 @@ public class s_Appointment extends sessionParentClass {
             try {
                 tx = session.beginTransaction();
 
-                String hql = "FROM Appointment a WHERE a.ID = :_ID";
+                String hql = "FROM Appointments a WHERE a.ID = :_ID";
                 Query query = session.createQuery(hql, Appointment.class);
                 if (_Title != null) query.setParameter("title", _Title);
                 query.setParameter("ispublic", _isPublic);
@@ -116,7 +116,7 @@ public class s_Appointment extends sessionParentClass {
         try (Session session = sessionFactory.openSession()) {
 
             Transaction tx = null;
-            List<Appointment> appointments = session.createQuery("from Appointment", Appointment.class).list();
+            List<Appointment> appointments = session.createQuery("from Appointments", Appointment.class).list();
             for (Appointment a : appointments) {
                 System.out.println(a.toString());
             }
