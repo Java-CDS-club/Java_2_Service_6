@@ -16,8 +16,8 @@ public class CreatePersonController {
     private PersonRepository personRepository;
 
     public CreatePersonController(PersonRepository personRepository) {
-        this.personRepository = personRepository;
-    }
+    this.personRepository = personRepository;
+}
 
     @PostMapping("")
     public Person createPerson(Person person) {

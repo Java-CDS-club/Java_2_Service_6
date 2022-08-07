@@ -3,6 +3,7 @@ package appointmentsService.sessionControls;
 import appointmentsService.model.Course;
 import appointmentsService.model.Faculty;
 import javax.persistence.Query;
+
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 

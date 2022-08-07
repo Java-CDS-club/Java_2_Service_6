@@ -1,8 +1,5 @@
 package appointmentsService.model;
-
 import javax.persistence.*;
-
-
 import java.time.LocalDateTime;
 import java.util.concurrent.atomic.AtomicInteger;
 
